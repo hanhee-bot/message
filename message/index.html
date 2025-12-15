@@ -1,16 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<meta charset="utf-8">
-	<title>제목</title>
-	<meta name="description" content="설명">
-	<meta name="keywords" content="키워드1, 키워드2">
-	<link rel="stylesheet" href="style.css">
-	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<link rel="icon" type="image/png" href="">
-	<meta property="og:image" content="">
+<meta charset="utf-8">
+<title>guestbook</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* ========================= */
+/* 뒤로 가기 버튼 */
+/* ========================= */
+.back-button {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 999;
+}
+
+.back-button img {
+    width: 100px;
+    height: auto;
+    display: block;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.back-button:hover img {
+    opacity: 1;
+}
+</style>
 </head>
+
 <body>
+
+<!-- 🔑 뒤로 가기 버튼 -->
+<a href="../index.html" class="back-button">
+    <img src="1.png" alt="Back">
+</a>
+
+<!-- 배경 -->
+<div class="stage">
+    <img class="bg" src="11111.png" alt="">
+</div>
+
+<!-- 상단 고정 텍스트 -->
+<div id="header-text" contenteditable="true">
+    글을 남겨보세요. 본인만 볼 수 있지만요.
+</div>
+
+<!-- 글자가 찍히는 영역 -->
+<div id="canvas"></div>
+
+<script>
+let currentText = null;
+
+document.addEventListener('click', (e) => {
+    if (e.target.closest('.back-button')) return;
+
+    if (currentText) {
+        currentText.contentEditable = "false";
+        currentText = null;
+    }
+
+    const span = document.createElement('span');
+    span.className = 'floating-text';
+    span.contentEditable = "true";
+    span.style.left = e.clientX + 'px';
+    span.style.top = e.clientY + 'px';
+
+    document.body.appendChild(span);
+    span.focus();
+    currentText = span;
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && currentText) {
+        e.preventDefault();
+        currentText.contentEditable = "false";
+        currentText.blur();
+        currentText = null;
+    }
+});
+</script>
 
 </body>
 </html>

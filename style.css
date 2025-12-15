@@ -1,0 +1,98 @@
+/* 기본 리셋 */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    cursor: text;
+    background: #ffffff; /* 🔑 배경 흰색 */
+    font-family: sans-serif;
+}
+
+/* 배경 영역 */
+.stage {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff; /* 이미지 뒤 흰색 */
+}
+
+/* 배경 이미지 */
+.bg {
+    width: 80vw;          /* 🔑 화면보다 작게 */
+    max-width: 1200px;   /* 너무 커지지 않게 */
+    height: auto;
+
+    object-fit: contain;
+    pointer-events: none;
+
+    opacity: 0.95;       /* 살짝만 숨 쉬듯 */
+}
+/* ========================= */
+/* 상단 고정 텍스트 */
+/* ========================= */
+
+#header-text {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+
+    min-width: 200px;
+    max-width: 80vw;
+
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+
+    color: rgba(0,0,0,0.8);
+    background: transparent;
+    outline: none;
+    border: none;
+
+    cursor: text;
+    white-space: nowrap;
+}
+
+/* 포커스 시 살짝만 강조 */
+#header-text:focus {
+    color: rgba(0,0,0,1);
+}
+
+
+/* 글자가 찍히는 영역 */
+#canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+}
+
+/* 둥둥 떠있는 텍스트 */
+.floating-text {
+    position: fixed;
+    transform: translate(-50%, -50%);
+
+    min-width: 10px;
+    max-width: 60vw;
+
+    font-size: 10px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.75); /* 🔑 흰 배경용 텍스트 */
+
+    outline: none;
+    white-space: pre-wrap;
+
+    caret-color: rgba(0,0,0,0.8);
+}
+
+/* 입력 중일 때 */
+.floating-text[contenteditable="true"] {
+    color: rgba(0,0,0,1);
+}
